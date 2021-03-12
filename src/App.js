@@ -1,24 +1,49 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { makeStyles, CssBaseline, createMuiTheme, ThemeProvider } from '@material-ui/core';
+import Employees from "./pages/Employees/Employees";
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#333996",
+      light: '#3c44b126'
+    },
+    secondary: {
+      main: "#f83245",
+      light: '#f8324526'
+    },
+    background: {
+      default: "#f4f5fd"
+    },
+  },
+  overrides:{
+    MuiAppBar:{
+      root:{
+        transform:'translateZ(0)'
+      }
+    }
+  },
+  props:{
+    MuiIconButton:{
+      disableRipple:true
+    }
+  }
+})
+const useStyles = makeStyles({
+  appMain: {
+    paddingLeft: '147px',
+    width: '90%'
+  }
+})
 function App() {
+  const classes = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <ThemeProvider theme={theme}>
+    <div className={classes.appMain}>
+      <Employees />
     </div>
+    <CssBaseline />
+  </ThemeProvider>
   );
 }
 
